@@ -9,7 +9,7 @@ class User
   validates_presence_of :secret
 
   def initialize(attributes = {})
-    attributes.each do |name, value|
+    attributes.try(:each) do |name, value|
       send("#{name}=", value)
     end
   end

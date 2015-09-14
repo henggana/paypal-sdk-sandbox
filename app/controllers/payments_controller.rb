@@ -70,9 +70,7 @@ class PaymentsController < ApplicationController
 
   def config_paypal_sdk
     PayPal::SDK::REST.set_config(
-      :mode => "sandbox", # "sandbox" or "live"
-      # :client_id => "AfX64yhRoywezWIqPNd5hzbXJ7E0fsysri8OQm4Xx2GEDdWkDAVrP56Riqy-0GeAQWy-uEcDecgMgOS1",
-      # :client_secret => "EAw3QADRC24Qo6PqTR_xKeJYVeOuTe2lInnPK4XyrtvzI5GunE1dEJqvXbk5r-9yPE01rrRm3EAD0SL-")
+      :mode => "sandbox",
       :client_id => session[:user]['client_id'],
       :client_secret => session[:user]['secret'])
   end

@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   root to: 'home#index'
 
-  resources :sessions do
+  get 'sessions/edit', to: 'sessions#edit', as: :edit_session
+  delete 'logout', to: 'sessions#destroy', as: :destroy_session
+
+  resources :sessions, except: [:edit, :destroy] do
   end
 
   resources :payments do

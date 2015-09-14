@@ -14,6 +14,31 @@
 
   <body>
 
+  <nav class="top-bar" data-topbar role="navigation">
+    <ul class="title-area">
+      <li class="name">
+        <h1><a href="#">Sandbox</a></h1>
+      </li>
+       <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+
+    <section class="top-bar-section">
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <li><%= link_to "Account", edit_session_path %></li>
+        <% if session[:user].present? %>
+        <li><%= link_to "Logout", destroy_session_path, method: :delete %></li>
+        <% end %>
+      </ul>
+
+      <!-- Left Nav Section -->
+      <ul class="left">
+        <li><%= link_to "Payments", payments_path %></li>
+      </ul>
+    </section>
+  </nav>
+
     <%= yield %>
 
   </body>
