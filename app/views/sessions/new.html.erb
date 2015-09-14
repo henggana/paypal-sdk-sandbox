@@ -1,0 +1,13 @@
+<div class="row">
+  <h2>Setup Paypal REST API</h2>
+  <div class="small-12 large-6 columns">
+    <%= form_for @user, url: sessions_path do |f| %>
+      <%= f.label :client_id %>
+      <%= f.text_field :client_id, placeholder: 'Paypal REST API client id' %>
+      <%= f.label :secret %>
+      <%= f.text_field :secret, placeholder: 'Paypal REST API secret' %>
+
+      <%= f.submit value: "Save", class: "button" %>
+    <% end %>
+  </div>
+</div>

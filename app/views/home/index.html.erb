@@ -1,0 +1,41 @@
+<% if flash[:success] %>
+<div class="row">
+  <div class="large-12 columns">
+    <div data-alert class="alert-box success radius">
+      <%= flash[:success].html_safe %>
+      <a href="#" class="close">&times;</a>
+    </div>
+  </div>
+</div>
+<% elsif flash[:alert] %>
+<div class="row">
+  <div class="large-12 columns">
+    <div data-alert class="alert-box alert radius">
+      <%= flash[:alert].html_safe %>
+      <a href="#" class="close">&times;</a>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<%= debug session[:user] %>
+
+<div class="row">
+  <div class="large-12 columns">
+    <h2>Welcome!</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <%= link_to 'Setup Paypal API User', new_session_path %>
+  </div>
+</div>
+
+<% if session[:user] %>
+<div class="row">
+  <div class="large-12 columns">
+    <%= link_to 'Payments', payments_path %>
+  </div>
+</div>
+<% end %>

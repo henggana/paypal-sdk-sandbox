@@ -1,0 +1,45 @@
+<% if flash[:success] %>
+<div class="row">
+  <div class="large-12 columns">
+    <h2><%= flash[:success] %></h2>
+  </div>
+</div>
+<% end %>
+
+<div class="row">
+  <div class="large-12 columns">
+    <div>Create fake payment: </div>
+    <%= link_to "Credit card", credit_card_payments_path, class: "button", method: :post %>
+    <%= link_to "Paypal", paypal_payments_path, class: "button", method: :post %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <table>
+      <thead>
+        <th>ID</th>
+        <th>Created</th>
+        <th>Intent</th>
+        <th>State</th>
+        <th>Approval</th>
+        <th>Execute</th>
+      </thead>
+      <tbody>
+        <% @payments.try(:payments).each do |payment| %>
+        <tr>
+          <% 
+            approval = nil
+            payment.links.each {|link| approval = link.href if link.rel == 'approval' } %>
+          <td><%= payment.id %></td>
+          <td><%= payment.create_time %></td>
+          <td><%= payment.intent %></td>
+          <td><%= payment.state %></td>
+          <td><%= link_to('Approve', approval) if approval %></td>
+          <td><%= paypal_execute_payments_path(payment.id) if payment.payer.try(:payer_id) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
